@@ -12,6 +12,7 @@ def dijkstra(graph, source):
 
     while pq:
         current_distance, node = heapq.heappop(pq)
+        # If this node is already processed with minimum distance, then don't process again
         if visited[node]:
             continue
 
@@ -19,6 +20,8 @@ def dijkstra(graph, source):
 
         for neighbor, weight in graph[node]:
             iterations += 1
+
+            # don't add distances / costs for nodes which are already part of shortest path
             if visited[neighbor]:
                 continue
 
@@ -33,8 +36,8 @@ def dijkstra(graph, source):
 
 if __name__ == "__main__":
     graph = [
-        [[1, 1], [2, 4]], # 0
-        [[0, 1], [2, 2], [3, 5]], # 1
+        [[1, 1], [2, 4]],  # 0
+        [[0, 1], [2, 2], [3, 5]],  # 1
         [[0, 4], [1, 2], [3, 1]],
         [[1, 5], [2, 1]]
     ]
